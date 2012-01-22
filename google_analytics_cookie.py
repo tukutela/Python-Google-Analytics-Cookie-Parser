@@ -56,8 +56,9 @@ class GoogleAnalyticsCookie():
     def __parse_utmz(self, cookie):
         """ Parses the utmz cookie for visitor information """
         parsed = cookie.split('.')
-        if len(parsed) != 5:
+        if len(parsed) < 5:
             return self.utmz 
+        parsed[4] = ".".join(parsed[4:])   
         
         translations = dict(
             utmcsr = 'source',
